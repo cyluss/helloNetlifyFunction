@@ -7,15 +7,24 @@
 <body>
     <div data-netlify-identity-menu></div>
     <script>
-        const token = netlifyIdentity.currentUser().token;
-        fetch('https://stately-llama-3facc0.netlify.app/.netlify/functions/getGoogleClientSecret', {
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `${token.token_type} ${token.access_token}`
+        function ready(fn) {
+            if (document.readyState != 'loading'){
+                fn();
+            } else {
+                document.addEventListener('DOMContentLoaded', fn);
             }
-        }).then((resp) => {
-            console.log(resp.json());
-        })
+        }
+        ready(() => {
+            const token = netlifyIdentity.currentUser().token;
+            fetch('https://stately-llama-3facc0.netlify.app/.netlify/functions/getGoogleClientSecret', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `${token.token_type} ${token.access_token}`
+                }
+            }).then((resp) => {
+                console.log(resp.json());
+            })
+        });
     </script>
 </body>
 </html>

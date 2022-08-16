@@ -13,7 +13,7 @@ const handler = async function (event, context) {
 
   const { identity, user } = context.clientContext;
   try {
-    if (user === null) {
+    if (!user) {
       return {
         statusCode: 401
       };
