@@ -7,7 +7,13 @@
 <body>
     <div data-netlify-identity-menu></div>
     <script>
-        fetch('/.netlify/functions/getGoogleClientSecret').then((resp) => {
+        const token = netlifyIdentity.currentUser().token;
+        fetch('https://stately-llama-3facc0.netlify.app/.netlify/functions/getGoogleClientSecret', {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `${token.token_type} ${token.access_token}`
+            }
+        }).then((resp) => {
             console.log(resp.json());
         })
     </script>
