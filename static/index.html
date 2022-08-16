@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Netlify Identity & Function Test</title>
+  <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+    <div data-netlify-identity-menu></div>
+    <script>
+        fetch('/.netlify/functions/getGoogleClientSecret').then((resp) => {
+            console.log(resp.json());
+        })
+    </script>
+</body>
+</html>
