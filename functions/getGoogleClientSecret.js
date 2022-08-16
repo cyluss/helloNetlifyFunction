@@ -24,10 +24,9 @@ const handler = async function (event, context) {
       body: JSON.stringify({ identity, user, msg: data.value }),
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return {
       statusCode: 500,
-      // Could be a custom message or object i.e. JSON.stringify(err)
       body: JSON.stringify({ msg: error.message }),
     }
   }
